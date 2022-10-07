@@ -1,9 +1,11 @@
 import React from 'react';
+import Header from './Header';
 
-export default class productList extends React.Component {
+export default class Home extends React.Component {
   render() {
     return (
       <div>
+        <Header />
         <p
           data-testid="home-initial-message"
         >

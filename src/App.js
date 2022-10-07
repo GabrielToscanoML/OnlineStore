@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Components/Home';
-// import productList from './Components/productList';
 import shoppingCart from './Components/shoppingCart';
 
 export default class App extends React.Component {

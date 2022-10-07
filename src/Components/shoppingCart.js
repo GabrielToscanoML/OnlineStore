@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from './Header';
 
-export default class productList extends React.Component {
+export default class shoppingCart extends React.Component {
   render() {
     return (
       <div>
         <Header />
         <p
-          data-testid="home-initial-message"
+          data-testid="shopping-cart-empty-message"
         >
-          Digite algum termo de pesquisa ou escolha uma categoria.
+          Seu carrinho está vazio
         </p>
       </div>
     );

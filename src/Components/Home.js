@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import Categories from './Categories';
 
 export default class Home extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export default class Home extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <Categories />
       </div>
     );
   }

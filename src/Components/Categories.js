@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories, getProductByQuery } from '../services/api';
 
 export default class categories extends React.Component {
@@ -58,10 +59,17 @@ export default class categories extends React.Component {
                 return (
                   <div>
                     <li
-                      key={ element.title }
+                      key={ element.id }
                       data-testid="product"
                     >
+                      <Link
+                        to={ `/ProductInfo/${element.id}` }
+                        data-testid="product-detail-link"
+                      >
+                        Detalhes do produto
+                      </Link>
                       <p>{ element.title }</p>
+                      <p>{ element.id }</p>
                       <img src={ element.thumbnail } alt={ element.title } />
                       <p>{ element.price }</p>
                     </li>

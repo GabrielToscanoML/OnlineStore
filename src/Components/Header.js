@@ -7,6 +7,7 @@ export default class Header extends React.Component {
     inputName: '',
     productList: [],
     isNull: true,
+    
   };
 
   handleInput = (event) => {

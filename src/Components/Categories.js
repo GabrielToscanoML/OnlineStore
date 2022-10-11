@@ -72,6 +72,16 @@ export default class categories extends React.Component {
                       <p>{ element.id }</p>
                       <img src={ element.thumbnail } alt={ element.title } />
                       <p>{ element.price }</p>
+                      <Link
+                        to="/shoppingCart"
+                      >
+                        <button
+                          data-testid="product-add-to-cart"
+                          type="button"
+                        >
+                          Adicione ao carrinho
+                        </button>
+                      </Link>
                     </li>
                   </div>
                 );

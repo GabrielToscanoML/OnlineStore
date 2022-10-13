@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductByQuery } from '../services/api';
+import AddToShoppingCart from './AddToShoppingCart';
 
 export default class categories extends React.Component {
   state = {
@@ -32,10 +34,8 @@ export default class categories extends React.Component {
             categoriesList.map((element, index) => {
               if (index >= 0) {
                 return (
-                  <div>
-                    <li
-                      key={ element.name }
-                    >
+                  <div key={ element.name }>
+                    <li>
                       <button
                         type="button"
                         data-testid="category"
@@ -55,11 +55,11 @@ export default class categories extends React.Component {
         <ul>
           {
             products.map((element, index) => {
+              const { handleAddToCart } = this.props;
               if (index >= 0) {
                 return (
-                  <div>
+                  <div key={ element.id }>
                     <li
-                      key={ element.id }
                       data-testid="product"
                     >
                       <Link
@@ -72,6 +72,18 @@ export default class categories extends React.Component {
                       <p>{ element.id }</p>
                       <img src={ element.thumbnail } alt={ element.title } />
                       <p>{ element.price }</p>
+                      <AddToShoppingCart
+                        title={ element.title }
+                        thumbnail={ element.thumbnail }
+                        price={ element.price }
+                        id={ element.id }
+                        handleAddToCart={ () => handleAddToCart(
+                          element.title,
+                          element.thumbnail,
+                          element.price,
+                          element.id,
+                        ) }
+                      />
                     </li>
                   </div>
                 );
@@ -84,3 +96,7 @@ export default class categories extends React.Component {
     );
   }
 }
+
+categories.propTypes = {
+  handleAddToCart: PropTypes.func.isRequired,
+};

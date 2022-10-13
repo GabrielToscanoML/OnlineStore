@@ -1,0 +1,47 @@
+.ProductInfo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.main-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.email-form {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 30px;
+  margin: 3px;
+}
+
+.avaliation-form {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.avaliation-button {
+  background-color: blueviolet;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer; 
+  font-size: 20px;
+  height: 34px;
+  margin-top: 5px;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}

@@ -12,19 +12,30 @@ export default class ShoppingCart extends React.Component {
     this.getLocalStorageData();
   }
 
+  componentDidUpdate() {
+    // console.log('a');
+  }
+
   getLocalStorageData = () => {
     const data = JSON.parse(localStorage.getItem('CartItems') || '[]'); // condição de OU, pois quando abre a pagina pela primeira vez, o padrão é "[]"
-    console.log('data', data);
+    // console.log('data', data);
     this.setState({
       pList: data,
     });
   };
 
-  filterProducts = () => {
+  removeItem = ({ target }) => {
     const { pList } = this.state;
+    const newArray = pList.filter((item) => item.id !== target.value);
+    localStorage.setItem('CartItems', JSON.stringify(newArray));
+    this.setState({
+      pList: newArray,
+    });
+  };
 
-    const result = pList.filter((item, index) => pList.indexOf(item) === index);
-
+  filterProducts = ({ target }) => {
+    const { pList } = this.state;
+    const result = pList.filter((item) => item.title !== target.value);
     this.setState({
       productListFinal: result,
     });
@@ -62,12 +73,22 @@ export default class ShoppingCart extends React.Component {
         {
           pList.map((element) => (
             <div key={ element.id }>
+              <button
+                data-testid="remove-product"
+                type="button"
+                onClick={ this.removeItem }
+                value={ element.id }
+                id={ element.id }
+              >
+                Remover item
+              </button>
               <div>
                 <p data-testid="shopping-cart-product-name">{ element.title }</p>
               </div>
               <div data-testid="shopping-cart-product-quantity">
                 { this.quantityCheck(element) }
               </div>
+              {/* <button>Adicionar Item</button> */}
             </div>
           ))
         }

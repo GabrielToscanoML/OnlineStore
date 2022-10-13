@@ -24,10 +24,9 @@ export default class Header extends React.Component {
   };
 
   render() {
-    const { inputName, productList, isNull, outracoisa } = this.state;
+    const { inputName, productList, isNull } = this.state;
     return (
       <div>
-        { console.log(outracoisa) }
         <input
           placeholder="Pesquisar"
           data-testid="query-input"

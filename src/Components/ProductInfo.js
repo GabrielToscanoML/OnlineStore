@@ -31,11 +31,18 @@ export default class ProductInfo extends React.Component {
 
   addToCart = () => {
     const { product } = this.state;
+    const newProduct = {
+      title: product.title,
+      thumbnail: product.thumbnail,
+      price: product.price,
+      id: product.id,
+      value: product.id,
+    };
     if (!JSON.parse(localStorage.getItem('CartItems'))) {
       localStorage.setItem('CartItems', JSON.stringify([]));
     }
     const itemsSaved = JSON.parse(localStorage.getItem('CartItems'));
-    const newCartItens = [...itemsSaved, product];
+    const newCartItens = [...itemsSaved, newProduct];
     localStorage.setItem('CartItems', JSON.stringify(newCartItens));
     this.attQtdCarrinho();
   };

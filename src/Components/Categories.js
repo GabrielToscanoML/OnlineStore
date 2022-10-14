@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getCategories, getProductByQuery } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import AddToShoppingCart from './AddToShoppingCart';
 
 export default class categories extends React.Component {
@@ -14,8 +14,8 @@ export default class categories extends React.Component {
     this.requestAPI();
   }
 
-  handleClick = async (name) => {
-    const response = await getProductByQuery(name);
+  handleClick = async (id, name) => {
+    const response = await getProductsFromCategoryAndQuery(id, name);
     this.setState({ products: response });
   };
 
@@ -39,7 +39,7 @@ export default class categories extends React.Component {
                       <button
                         type="button"
                         data-testid="category"
-                        onClick={ () => this.handleClick(element.name) }
+                        onClick={ () => this.handleClick(element.id, element.name) }
                       >
                         {element.name}
                       </button>

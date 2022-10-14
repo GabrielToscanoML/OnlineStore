@@ -30,6 +30,7 @@ export default class Home extends React.Component {
       thumbnail,
       price,
       id,
+      value: id,
     };
     if (!JSON.parse(localStorage.getItem('CartItems'))) {
       localStorage.setItem('CartItems', JSON.stringify([]));

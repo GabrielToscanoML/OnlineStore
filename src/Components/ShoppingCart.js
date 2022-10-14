@@ -38,6 +38,14 @@ export default class ShoppingCart extends React.Component {
     return [...itemsUnicos.values()];
   };
 
+  increaseItem = () => {
+    console.log('increase');
+  };
+
+  decreaseItem = () => {
+    console.log('decrease');
+  };
+
   quantityCheck = (productTarget) => {
     const { pList } = this.state;
     return (
@@ -81,7 +89,21 @@ export default class ShoppingCart extends React.Component {
               >
                 Remover item
               </button>
-              {/* <button>Adicionar Item</button> */}
+              <button
+                type="button"
+                data-testid="product-increase-quantity"
+                value={ element.id }
+                onClick={ this.increaseItem }
+              >
+                +
+              </button>
+              <button
+                type="button"
+                data-testid="product-decrease-quantity"
+                onClick={ this.decreaseItem }
+              >
+                -
+              </button>
             </div>
           ))
         }

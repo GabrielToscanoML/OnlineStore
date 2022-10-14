@@ -15,8 +15,8 @@ export default class categories extends React.Component {
   }
 
   handleClick = async (id, name) => {
-    const response = await getProductsFromCategoryAndQuery(id, name);
-    this.setState({ products: response });
+    const response = await (getProductsFromCategoryAndQuery(id, name));
+    this.setState({ products: response.results });
   };
 
   requestAPI = async () => {

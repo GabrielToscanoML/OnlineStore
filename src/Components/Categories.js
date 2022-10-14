@@ -55,7 +55,7 @@ export default class categories extends React.Component {
         <ul>
           {
             products.map((element, index) => {
-              const { handleAddToCart } = this.props;
+              const { handleAddToCart, attQtdCarrinho } = this.props;
               if (index >= 0) {
                 return (
                   <div key={ element.id }>
@@ -77,6 +77,7 @@ export default class categories extends React.Component {
                         thumbnail={ element.thumbnail }
                         price={ element.price }
                         id={ element.id }
+                        attQtdCarrinho={ attQtdCarrinho }
                         handleAddToCart={ () => handleAddToCart(
                           element.title,
                           element.thumbnail,
@@ -99,4 +100,5 @@ export default class categories extends React.Component {
 
 categories.propTypes = {
   handleAddToCart: PropTypes.func.isRequired,
+  attQtdCarrinho: PropTypes.func.isRequired,
 };

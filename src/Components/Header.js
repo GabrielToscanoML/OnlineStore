@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductByQuery } from '../services/api';
 
@@ -25,6 +26,7 @@ export default class Header extends React.Component {
 
   render() {
     const { inputName, productList, isNull } = this.state;
+    const { qtdItemsCarrinho } = this.props;
     return (
       <div>
         <input
@@ -45,6 +47,7 @@ export default class Header extends React.Component {
           data-testid="shopping-cart-button"
         >
           <button type="button">Carrinho</button>
+          <span data-testid="shopping-cart-size">{ qtdItemsCarrinho }</span>
         </Link>
 
         { isNull && <p>Nenhum produto foi encontrado</p> }
@@ -57,7 +60,6 @@ export default class Header extends React.Component {
                   return (
                     <div>
                       <p data-testid="product">{ product.title }</p>
-                      {/* <p>{ product.price }</p> */}
                     </div>
                   );
                 }
@@ -70,3 +72,7 @@ export default class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  qtdItemsCarrinho: PropTypes.string.isRequired,
+};

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 export default class AddToShoppingCart extends React.Component {
   onTrigger = (title, thumbnail, price, id) => {
-    const { handleAddToCart } = this.props;
+    const { handleAddToCart, attQtdCarrinho } = this.props;
     handleAddToCart(title, thumbnail, price, id);
+    attQtdCarrinho();
   };
 
   render() {
@@ -28,6 +29,7 @@ export default class AddToShoppingCart extends React.Component {
 
 AddToShoppingCart.propTypes = {
   handleAddToCart: PropTypes.func.isRequired,
+  attQtdCarrinho: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

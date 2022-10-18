@@ -58,7 +58,6 @@ export default class ProductInfo extends React.Component {
     const { qtdItemsCarrinho, product, frete } = this.state;
     const { title, thumbnail, price } = product;
     const { match: { params: { id } } } = this.props;
-    // console.log(frete.free_shipping);
     return (
       <div>
         <Header

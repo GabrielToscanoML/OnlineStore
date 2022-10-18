@@ -8,6 +8,7 @@ import Form from './Form';
 export default class ProductInfo extends React.Component {
   state = {
     product: {},
+    frete: {},
     qtdItemsCarrinho: '',
   };
 
@@ -50,13 +51,14 @@ export default class ProductInfo extends React.Component {
   requestAPI = async () => {
     const { match: { params: { id } } } = this.props;
     const response = await getProductById(id);
-    this.setState({ product: response });
+    this.setState({ product: response, frete: response.shipping });
   };
 
   render() {
-    const { qtdItemsCarrinho, product } = this.state;
+    const { qtdItemsCarrinho, product, frete } = this.state;
     const { title, thumbnail, price } = product;
     const { match: { params: { id } } } = this.props;
+    // console.log(frete.free_shipping);
     return (
       <div>
         <Header
@@ -80,6 +82,8 @@ export default class ProductInfo extends React.Component {
             >
               { price }
             </p>
+            {(frete.free_shipping)
+            && <p data-testid="free-shipping">Frete Grátis</p>}
             <p> descrição do produto </p>
           </main>
 

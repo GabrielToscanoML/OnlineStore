@@ -43,6 +43,7 @@ export default class categories extends React.Component {
                       >
                         {element.name}
                       </button>
+                      {/* <p>{element.id}</p> */}
                     </li>
                   </div>
                 );
@@ -56,6 +57,7 @@ export default class categories extends React.Component {
           {
             products.map((element, index) => {
               const { handleAddToCart, attQtdCarrinho } = this.props;
+              const frete = element.shipping.free_shipping;
               if (index >= 0) {
                 return (
                   <div key={ element.id }>
@@ -65,6 +67,7 @@ export default class categories extends React.Component {
                       <Link
                         to={ `/ProductInfo/${element.id}` }
                         data-testid="product-detail-link"
+                        frete={ frete }
                       >
                         Detalhes do produto
                       </Link>
@@ -72,6 +75,7 @@ export default class categories extends React.Component {
                       <p>{ element.id }</p>
                       <img src={ element.thumbnail } alt={ element.title } />
                       <p>{ element.price }</p>
+                      {frete && <p data-testid="free-shipping">Frete Grátis</p>}
                       <AddToShoppingCart
                         title={ element.title }
                         thumbnail={ element.thumbnail }

@@ -38,12 +38,32 @@ export default class ShoppingCart extends React.Component {
     return [...itemsUnicos.values()];
   };
 
-  increaseItem = () => {
-    console.log('increase');
+  // pq isso funciona assim e do outro jeito nao
+  increaseItem = (id) => {
+    const { pList } = this.state;
+    const idUnico = pList.filter((item) => item.id === id);
+    const idDiferente = pList.filter((item) => item.id !== id);
+    // const findProduct = pList.find((item) => item.id === id);
+    // const result = [...pList, findProduct];
+    const result = [...idUnico, ...idDiferente, idUnico[0]];
+    localStorage.setItem('CartItems', JSON.stringify(result));
+    this.setState(({
+      pList: result,
+    }));
   };
 
-  decreaseItem = () => {
-    console.log('decrease');
+  decreaseItem = (id) => {
+    const { pList } = this.state;
+    // retiro o primeiro elemento que tiver o mesmo ID
+    const products = pList.filter((item) => item.id === id).slice(1);
+    // crio um array sem os elementos desse ID
+    const newList = pList.filter((item) => item.id !== id);
+    // faço a junção dos dois arrays, agora sem um elemento
+    const result = [...newList, ...products];
+    localStorage.setItem('CartItems', JSON.stringify(result));
+    this.setState({
+      pList: result,
+    });
   };
 
   quantityCheck = (productTarget) => {
@@ -93,14 +113,14 @@ export default class ShoppingCart extends React.Component {
                 type="button"
                 data-testid="product-increase-quantity"
                 value={ element.id }
-                onClick={ this.increaseItem }
+                onClick={ () => this.increaseItem(element.id) }
               >
                 +
               </button>
               <button
                 type="button"
                 data-testid="product-decrease-quantity"
-                onClick={ this.decreaseItem }
+                onClick={ () => this.decreaseItem(element.id) }
               >
                 -
               </button>

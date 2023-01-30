@@ -1,0 +1,17 @@
+.header {
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.cart-button {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.cart-icon {
+  margin-right: 15px;
+}

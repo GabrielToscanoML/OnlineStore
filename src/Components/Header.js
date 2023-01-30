@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductByQuery } from '../services/api';
+import ShoppingCartIcon from '../images/shoppingCart.svg';
+import MLIcon from '../images/mercado-livre.svg';
+import '../style/header.css';
 
 export default class Header extends React.Component {
   state = {
@@ -29,44 +32,58 @@ export default class Header extends React.Component {
     const { qtdItemsCarrinho } = this.props;
     return (
       <div>
-        <input
-          placeholder="Pesquisar"
-          data-testid="query-input"
-          value={ inputName }
-          onChange={ this.handleInput }
-        />
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ this.requestAPI }
-        >
-          Pesquisar
-        </button>
-        <Link
-          to="/shoppingCart"
-          data-testid="shopping-cart-button"
-        >
-          <button type="button">Carrinho</button>
-          <span data-testid="shopping-cart-size">{ qtdItemsCarrinho }</span>
-        </Link>
-
-        { isNull && <p>Nenhum produto foi encontrado</p> }
-
+        <header className="header">
+          <img src={ MLIcon } alt="Mercado Livre Icon" width="150px" heigth="150px" />
+          <Link
+            to="/shoppingCart"
+            data-testid="shopping-cart-button"
+            className="cart-button"
+          >
+            <button type="button">
+              <img
+                src={ ShoppingCartIcon }
+                alt="Shopping Cart Icon"
+                className="cart-icon"
+                width="30px"
+                heigth="30px"
+              />
+            </button>
+            <span data-testid="shopping-cart-size">{ qtdItemsCarrinho }</span>
+          </Link>
+        </header>
         <div>
-          <ul>
-            {
-              productList.map((product, index) => {
-                if (index >= 0) {
-                  return (
-                    <div>
-                      <p data-testid="product">{ product.title }</p>
-                    </div>
-                  );
-                }
-                return null;
-              })
-            }
-          </ul>
+          <input
+            placeholder="Pesquisar"
+            data-testid="query-input"
+            value={ inputName }
+            onChange={ this.handleInput }
+          />
+          <button
+            data-testid="query-button"
+            type="button"
+            onClick={ this.requestAPI }
+          >
+            Pesquisar
+          </button>
+
+          { isNull && <p>Nenhum produto foi encontrado</p> }
+
+          <div>
+            <ul>
+              {
+                productList.map((product, index) => {
+                  if (index >= 0) {
+                    return (
+                      <div>
+                        <p data-testid="product">{ product.title }</p>
+                      </div>
+                    );
+                  }
+                  return null;
+                })
+              }
+            </ul>
+          </div>
         </div>
       </div>
     );

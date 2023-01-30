@@ -11,15 +11,15 @@ export default class categories extends React.Component {
   };
 
   componentDidMount() {
-    this.requestAPI();
+    this.requestCategoriesAPI();
   }
 
   handleClick = async (id, name) => {
     const response = await (getProductsFromCategoryAndQuery(id, name));
-    this.setState({ products: response.results });
+    this.setState({ products: response });
   };
 
-  requestAPI = async () => {
+  requestCategoriesAPI = async () => {
     const response = await getCategories();
     this.setState({ categoriesList: response });
   };
@@ -43,7 +43,6 @@ export default class categories extends React.Component {
                       >
                         {element.name}
                       </button>
-                      {/* <p>{element.id}</p> */}
                     </li>
                   </div>
                 );

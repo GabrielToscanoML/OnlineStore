@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './Components/Home';
-import ProductInfo from './Components/ProductInfo';
-import ShoppingCart from './Components/ShoppingCart';
+import Home from './pages/Home';
+import ProductInfo from './pages/ProductInfo';
+import ShoppingCart from './pages/ShoppingCart';
 
 export default class App extends React.Component {
   render() {
@@ -10,7 +10,7 @@ export default class App extends React.Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/home" component={ Home } />
+            <Route exact path="/" component={ Home } />
             <Route exact path="/shoppingCart" component={ ShoppingCart } />
             <Route
               exact

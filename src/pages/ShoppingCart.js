@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Header from '../Components/Header';
 
 export default class ShoppingCart extends React.Component {
   state = {

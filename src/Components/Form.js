@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ProductInfo.css';
+import '../style/ProductInfo.css';
 
 export default class Form extends React.Component {
   state = {

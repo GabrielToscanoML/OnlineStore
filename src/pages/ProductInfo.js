@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from './Header';
+import Header from '../Components/Header';
 import { getProductById } from '../services/api';
-import './ProductInfo.css';
-import Form from './Form';
+import '../style/ProductInfo.css';
+import Form from '../Components/Form';
 
 export default class ProductInfo extends React.Component {
   state = {

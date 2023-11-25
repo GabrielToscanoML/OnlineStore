@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../style/AddToShoppingCart.css';
 
 export default class AddToShoppingCart extends React.Component {
   onTrigger = (title, thumbnail, price, id) => {
@@ -13,7 +14,7 @@ export default class AddToShoppingCart extends React.Component {
     return (
       <button
         type="button"
-        data-testid="product-add-to-cart"
+        className="add-product-button"
         onClick={ () => this.onTrigger(
           title,
           thumbnail,

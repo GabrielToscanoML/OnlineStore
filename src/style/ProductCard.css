@@ -1,0 +1,37 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 240px;
+  list-style: none;
+  height: 350px;
+  background-color: #fff;
+  gap: 5px;
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2);
+}
+
+.product-link {
+  text-decoration: none;
+  color: black;
+  max-height: 60%;
+}
+
+.product-title {
+  padding: 2px 15px;
+  text-align: left;
+  height: 36px;  
+  overflow: hidden;
+  white-space: normal;
+}
+
+.bottom-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40%;
+  padding: 16px;
+}
+
+.frete-gratis {
+  color: green;
+}

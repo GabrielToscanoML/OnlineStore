@@ -48,3 +48,11 @@
 .search-button:hover {
   cursor: pointer;
 }
+
+.products-section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px;
+  gap: 24px;
+  justify-content: space-evenly;
+}

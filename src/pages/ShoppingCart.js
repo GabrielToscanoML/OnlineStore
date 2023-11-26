@@ -1,5 +1,8 @@
 import React from 'react';
 import Header from '../Components/Header';
+import '../style/shoppingCard.css';
+
+import trashIcon from '../assets/trash-icon.svg';
 
 export default class ShoppingCart extends React.Component {
   state = {
@@ -20,7 +23,7 @@ export default class ShoppingCart extends React.Component {
 
   removeItem = ({ target }) => {
     const { pList } = this.state;
-    const newArray = pList.filter((item) => item.id !== target.value);
+    const newArray = pList.filter((item) => item.value !== target.getAttribute('value'));
     localStorage.setItem('CartItems', JSON.stringify(newArray));
     this.setState({
       pList: newArray,
@@ -80,53 +83,63 @@ export default class ShoppingCart extends React.Component {
     return (
       <div>
         <Header />
-        {
-          ((pList.length === 0)
-            && (
-              <p
-                data-testid="shopping-cart-empty-message"
-              >
-                Seu carrinho está vazio
-              </p>
-            )
-          )
-        }
-        {
-          finalList.map((element) => (
-            <div key={ element.id }>
-              <div>
-                <p data-testid="shopping-cart-product-name">{ element.title }</p>
-              </div>
-              <div data-testid="shopping-cart-product-quantity">
-                { this.quantityCheck(element) }
-              </div>
-              <button
-                data-testid="remove-product"
-                type="button"
-                onClick={ this.removeItem }
-                value={ element.id }
-                id={ element.id }
-              >
-                Remover item
-              </button>
-              <button
-                type="button"
-                data-testid="product-increase-quantity"
-                value={ element.id }
-                onClick={ () => this.increaseItem(element.id) }
-              >
-                +
-              </button>
-              <button
-                type="button"
-                data-testid="product-decrease-quantity"
-                onClick={ () => this.decreaseItem(element.id) }
-              >
-                -
-              </button>
-            </div>
-          ))
-        }
+        <main className="main-container">
+          <section>
+            {
+              ((pList.length === 0)
+                && (<h1>Seu carrinho está vazio!</h1>)
+              )
+            }
+          </section>
+          <section className="items-container">
+            {
+              finalList.map((element) => (
+                <div
+                  className="item-card"
+                  key={ element.id }
+                >
+                  <img src={ element.thumbnail } alt="Imagem do produto" />
+                  <div className="title-qtd">
+                    <h4>{ element.title }</h4>
+                    <p className="qtd">
+                      Qtd:
+                      {' '}
+                      {this.quantityCheck(element)}
+                    </p>
+                  </div>
+                  <section className="buttons">
+                    <button
+                      className="increase-decrease"
+                      type="button"
+                      onClick={ () => this.decreaseItem(element.id) }
+                    >
+                      -
+                    </button>
+                    <button
+                      className="remove-item"
+                      type="button"
+                      onClick={ this.removeItem }
+                      id={ element.id }
+                    >
+                      <img
+                        src={ trashIcon }
+                        value={ element.id }
+                        alt="Icone para remover o item"
+                      />
+                    </button>
+                    <button
+                      className="increase-decrease"
+                      type="button"
+                      onClick={ () => this.increaseItem(element.id) }
+                    >
+                      +
+                    </button>
+                  </section>
+                </div>
+              ))
+            }
+          </section>
+        </main>
       </div>
     );
   }

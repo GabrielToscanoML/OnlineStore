@@ -1,0 +1,51 @@
+.item-card {
+  display: flex;
+  align-items: center;
+  width: 750px;
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.1);
+  gap: 12px;
+}
+
+.items-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.main-container {
+  margin: 32px auto 0px auto;
+  display: flex;
+  justify-content: center;
+  max-width: 1280px;
+}
+
+.title-qtd {
+  width: 500px;
+}
+
+.qtd {
+  margin-top: 4px;
+}
+
+.buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.increase-decrease {
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+}
+
+.increase-decrease:hover, .remove-item:hover {
+  cursor: pointer;
+}
+
+.remove-item {
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  border: 0;
+}

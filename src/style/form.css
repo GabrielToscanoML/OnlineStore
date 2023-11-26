@@ -1,0 +1,43 @@
+.form-container {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.email-form {
+  width: 316px;
+  height: 32px;
+  padding: 5px 16px;
+  font-size: 16px;
+}
+
+.radio-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+#textarea {
+  height: 100px;
+  padding: 5px;
+}
+
+.avaliation-button {
+  height: 40px;
+  background-color: #FBFF00;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.avaliation-button:hover {
+  cursor: pointer;
+}
+
+.email-validation, .valid {
+  color: red;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../style/ProductInfo.css';
+import '../style/form.css';
 
 export default class Form extends React.Component {
   state = {
@@ -12,17 +12,12 @@ export default class Form extends React.Component {
   };
 
   componentDidMount() {
-    this.getLocalStorageData(); // chamando no componentDidMount para ja renderizar quando abre a pagina
+    this.getLocalStorageData();
   }
 
   handleTextAreaOnChange = (event) => {
     const { value } = event.target;
     this.setState({ userComment: value });
-  };
-
-  handleInputOnChange = (event) => {
-    const { value } = event.target;
-    this.setState({ userEmail: value });
   };
 
   validateEmail = () => {
@@ -35,6 +30,11 @@ export default class Form extends React.Component {
       result = false;
     }
     return result;
+  };
+
+  handleEmailInput = (event) => {
+    const { value } = event.target;
+    this.setState({ userEmail: value });
   };
 
   validateInputRadio = () => {
@@ -91,65 +91,65 @@ export default class Form extends React.Component {
     const { isFormValid, userComment,
       selectedOption, userEmail, avaliationList } = this.state;
 
-    const isvalid = () => {
-      if (!isFormValid) {
-        return (<p data-testid="error-msg">Campos inválidos</p>);
-      }
-    };
-
     return (
       <div>
-        <form>
+        <form className="form-container">
           <input
             className="email-form"
             data-testid="product-detail-email"
             type="email"
             placeholder="Digite seu email"
-            onChange={ this.handleInputOnChange }
+            onChange={ this.handleEmailInput }
             value={ userEmail }
           />
-          <div className="avaliation-form">
-            Avalie o produto:
-            <input
-              type="radio"
-              value="1"
-              data-testid="1-rating"
-              onChange={ this.onValueChange }
-              checked={ selectedOption === '1' }
-            />
-            1
-            <input
-              type="radio"
-              value="2"
-              data-testid="2-rating"
-              onChange={ this.onValueChange }
-              checked={ selectedOption === '2' }
-            />
-            2
-            <input
-              type="radio"
-              value="3"
-              data-testid="3-rating"
-              onChange={ this.onValueChange }
-              checked={ selectedOption === '3' }
-            />
-            3
-            <input
-              type="radio"
-              value="4"
-              data-testid="4-rating"
-              onChange={ this.onValueChange }
-              checked={ selectedOption === '4' }
-            />
-            4
-            <input
-              type="radio"
-              value="5"
-              data-testid="5-rating"
-              onChange={ this.onValueChange }
-              checked={ selectedOption === '5' }
-            />
-            5
+          {
+            userEmail.length > 0 && !(this.validateEmail())
+            && <span className="email-validation">Formato de Email inválido!</span>
+          }
+          <div className="radio-container">
+            <p>Avalie o produto:</p>
+            <section className="radio-inputs">
+              <input
+                type="radio"
+                value="1"
+                data-testid="1-rating"
+                onChange={ this.onValueChange }
+                checked={ selectedOption === '1' }
+              />
+              1
+              <input
+                type="radio"
+                value="2"
+                data-testid="2-rating"
+                onChange={ this.onValueChange }
+                checked={ selectedOption === '2' }
+              />
+              2
+              <input
+                type="radio"
+                value="3"
+                data-testid="3-rating"
+                onChange={ this.onValueChange }
+                checked={ selectedOption === '3' }
+              />
+              3
+              <input
+                type="radio"
+                value="4"
+                data-testid="4-rating"
+                onChange={ this.onValueChange }
+                checked={ selectedOption === '4' }
+              />
+              4
+              <input
+                type="radio"
+                value="5"
+                data-testid="5-rating"
+                onChange={ this.onValueChange }
+                checked={ selectedOption === '5' }
+              />
+              5
+            </section>
           </div>
           <textarea
             id="textarea"
@@ -162,7 +162,6 @@ export default class Form extends React.Component {
             data-testid="product-detail-evaluation"
             onChange={ this.handleTextAreaOnChange }
           />
-          { isvalid }
           <button
             className="avaliation-button"
             data-testid="submit-review-btn"
@@ -171,7 +170,8 @@ export default class Form extends React.Component {
           >
             Avaliar
           </button>
-          { !isFormValid && <p data-testid="error-msg"> Campos inválidos </p> }
+          { !isFormValid
+            && <p className="valid">Preencha todos os campos de forma válida!</p> }
           {
             avaliationList.map((element) => (
               <div key={ element.id }>

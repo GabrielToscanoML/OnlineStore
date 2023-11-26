@@ -4,6 +4,7 @@ import Header from '../Components/Header';
 import { getProductById } from '../services/api';
 import '../style/ProductInfo.css';
 import Form from '../Components/Form';
+import ProductCard from '../Components/ProductCard';
 
 export default class ProductInfo extends React.Component {
   state = {
@@ -63,41 +64,37 @@ export default class ProductInfo extends React.Component {
         <Header
           qtdItemsCarrinho={ qtdItemsCarrinho }
         />
-        <div className="ProductInfo">
-          <main className="main-content">
-            <p
-              data-testid="product-detail-name"
-            >
-              { title }
-            </p>
-            <img
-              src={ thumbnail }
-              alt={ title }
-              data-testid="product-detail-image"
-              width="200px"
+        <div className="Product-info">
+          <section className="product-description">
+            <ProductCard
+              title={ title }
+              id={ id }
+              thumbnail={ thumbnail }
+              price={ price }
+              handleAddToCart={ this.addToCart }
+              attQtdCarrinho={ this.attQtdCarrinho }
+              frete={ frete }
             />
-            <p
-              data-testid="product-detail-price"
-            >
-              { price }
-            </p>
-            {(frete.free_shipping)
-            && <p data-testid="free-shipping">Frete Grátis</p>}
-            <p> descrição do produto </p>
-          </main>
-
-          <button
-            type="button"
-            data-testid="product-detail-add-to-cart"
-            onClick={ this.addToCart }
-          >
-            Adicionar Ao Carrinho
-          </button>
-
-          <h3>Avaliações</h3>
-          <Form
-            id={ id }
-          />
+            <div>
+              <h4>Descrição do produto: </h4>
+              <p className="description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatum error dolore dolores dicta ut. Sequi, dolorem
+                nostrum fugiat quae tempore eum odit reprehenderit veniam
+                mollitia deleniti aliquam, ducimus magnam expedita!
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Natus reiciendis accusamus velit tenetur, labore nihil
+                nesciunt magni perferendis harum, eligendi quam facilis,
+                mollitia cumque aspernatur magnam suscipit doloremque. Nobis, qui.
+              </p>
+            </div>
+          </section>
+          <section className="avaluation-section">
+            <h3>Avaliações</h3>
+            <Form
+              id={ id }
+            />
+          </section>
         </div>
       </div>
     );

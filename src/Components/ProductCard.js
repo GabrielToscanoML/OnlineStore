@@ -48,7 +48,7 @@ ProductCard.propTypes = {
   handleAddToCart: PropTypes.func.isRequired,
   attQtdCarrinho: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,
   frete: PropTypes.bool.isRequired,

@@ -30,22 +30,6 @@ export default class Home extends React.Component {
     }
   };
 
-  handleAddToCart = (title, thumbnail, price, id) => {
-    const newProduct = {
-      title,
-      thumbnail,
-      price,
-      id,
-      value: id,
-    };
-    if (!JSON.parse(localStorage.getItem('CartItems'))) {
-      localStorage.setItem('CartItems', JSON.stringify([]));
-    }
-    const itemsSaved = JSON.parse(localStorage.getItem('CartItems'));
-    const newCartItens = [...itemsSaved, newProduct];
-    localStorage.setItem('CartItems', JSON.stringify(newCartItens));
-  };
-
   getProductsFromCategoryAPI = async (id, name) => {
     this.setState({ isNull: false });
     const response = await (getProductsFromCategoryAndQuery(id, name));
@@ -73,7 +57,6 @@ export default class Home extends React.Component {
           <section className="right-side">
             <ProductList
               productList={ products }
-              handleAddToCart={ this.handleAddToCart }
               attQtdCarrinho={ this.attQtdCarrinho }
               getProductByQuery={ this.getProductByQuery }
               isNull={ isNull }

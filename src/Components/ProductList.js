@@ -55,7 +55,7 @@ export default class ProductList extends React.Component {
         <section className="products-section">
           {
             productList?.map((element, index) => {
-              const { handleAddToCart, attQtdCarrinho } = this.props;
+              const { attQtdCarrinho } = this.props;
               const frete = element.shipping.free_shipping;
               if (index >= 0) {
                 return (
@@ -67,7 +67,6 @@ export default class ProductList extends React.Component {
                       id={ element.id }
                       thumbnail={ element.thumbnail }
                       price={ element.price }
-                      handleAddToCart={ handleAddToCart }
                       attQtdCarrinho={ attQtdCarrinho }
                       frete={ frete }
                     />
@@ -84,7 +83,6 @@ export default class ProductList extends React.Component {
 }
 
 ProductList.propTypes = {
-  handleAddToCart: PropTypes.func.isRequired,
   attQtdCarrinho: PropTypes.func.isRequired,
   getProductByQuery: PropTypes.func.isRequired,
   isNull: PropTypes.bool.isRequired,

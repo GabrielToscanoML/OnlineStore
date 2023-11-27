@@ -5,9 +5,25 @@ import AddToShoppingCart from './AddToShoppingCart';
 import '../style/ProductCard.css';
 
 export default class ProductCard extends React.Component {
+  handleAddToCart = (title, thumbnail, price, id) => {
+    const newProduct = {
+      title,
+      thumbnail,
+      price,
+      id,
+      value: id,
+    };
+    if (!JSON.parse(localStorage.getItem('CartItems'))) {
+      localStorage.setItem('CartItems', JSON.stringify([]));
+    }
+    const itemsSaved = JSON.parse(localStorage.getItem('CartItems'));
+    const newCartItens = [...itemsSaved, newProduct];
+    localStorage.setItem('CartItems', JSON.stringify(newCartItens));
+  };
+
   render() {
     const { title, id, thumbnail, price,
-      handleAddToCart, attQtdCarrinho, frete } = this.props;
+      attQtdCarrinho, frete } = this.props;
     return (
       <li className="product-card">
         <Link
@@ -30,7 +46,7 @@ export default class ProductCard extends React.Component {
             price={ price }
             id={ id }
             attQtdCarrinho={ attQtdCarrinho }
-            handleAddToCart={ () => handleAddToCart(
+            handleAddToCart={ () => this.handleAddToCart(
               title,
               thumbnail,
               price,
@@ -45,7 +61,6 @@ export default class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
-  handleAddToCart: PropTypes.func.isRequired,
   attQtdCarrinho: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,

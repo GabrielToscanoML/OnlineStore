@@ -46,8 +46,6 @@ export default class ShoppingCart extends React.Component {
     const { pList } = this.state;
     const idUnico = pList.filter((item) => item.id === id);
     const idDiferente = pList.filter((item) => item.id !== id);
-    // const findProduct = pList.find((item) => item.id === id);
-    // const result = [...pList, findProduct];
     const result = [...idUnico, ...idDiferente, idUnico[0]];
     localStorage.setItem('CartItems', JSON.stringify(result));
     this.setState(({

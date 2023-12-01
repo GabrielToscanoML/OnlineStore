@@ -49,8 +49,8 @@ export default class ProductList extends React.Component {
             >
               <img src={ searchIcon } alt="Search Icon" />
             </button>
-            { isNull && <p>Nenhum produto foi encontrado</p> }
           </div>
+          { isNull && <p>Nenhum produto foi encontrado!</p> }
         </section>
         <section className="products-section">
           {
